@@ -1,7 +1,6 @@
 from song import Song
 from playlist_optimizer import MusicGraphOptimizer
-from visualizer import visualize_graph_matplotlib, print_playlist_analysis
-
+from visualizer import visualize_graph_matplotlib, print_playlist_analysis,print_analysis, generate_alternative_paths,print_path_comparison
 def main():
     # Create sample songs
     songs = [
@@ -17,9 +16,12 @@ def main():
     # Optimize playlist
     print("Optimizing playlist...")
     optimized_playlist = optimizer.optimize_playlist(songs[0])
-    
+    paths = generate_alternative_paths(optimized_playlist, optimizer)
+    print_path_comparison(paths, optimizer)
     # Print analysis
     print_playlist_analysis(optimized_playlist, optimizer)
+        # Print complete analysis
+    print_analysis(optimized_playlist, optimizer)
     
     # Create and show visualization
     plt = visualize_graph_matplotlib(optimized_playlist, optimizer)
